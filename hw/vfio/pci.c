@@ -33,6 +33,9 @@
 #include "trace.h"
 #include "qapi/error.h"
 
+//add by Dd
+#include "hw/net/dvisor.h"
+
 #define MSIX_CAP_LENGTH 12
 
 static void vfio_disable_interrupts(VFIOPCIDevice *vdev);
@@ -2603,7 +2606,9 @@ static void vfio_realize(PCIDevice *pdev, Error **errp)
     int groupid;
     int i, ret;
 
-    printf("[Dd] hello, this is vfio_realize in hw/vfio/\n");
+    fprintf(stdout,"[Dd] hello, this is vfio_realize in hw/vfio/\n");
+    //dockervisor_smem_create((1UL<<18));
+
     dd_stop();
     if (!vdev->vbasedev.sysfsdev) {
         if (!(~vdev->host.domain || ~vdev->host.bus ||

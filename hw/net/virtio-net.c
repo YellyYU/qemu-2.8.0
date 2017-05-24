@@ -26,6 +26,8 @@
 #include "qapi-event.h"
 #include "hw/virtio/virtio-access.h"
 
+#include "hw/net/dvisor.h"
+
 #define VIRTIO_NET_VM_VERSION    11
 
 #define MAC_TABLE_ENTRIES    64
@@ -1810,6 +1812,9 @@ static void virtio_net_device_realize(DeviceState *dev, Error **errp)
     nc->rxfilter_notify_enabled = 1;
 
     n->qdev = dev;
+
+    //add by Dd
+    //dockervisor_smem_create();
 }
 
 static void virtio_net_device_unrealize(DeviceState *dev, Error **errp)

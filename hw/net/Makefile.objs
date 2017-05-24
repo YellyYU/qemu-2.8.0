@@ -1,6 +1,10 @@
 common-obj-$(CONFIG_DP8393X) += dp8393x.o
 common-obj-$(CONFIG_XEN_BACKEND) += xen_nic.o
 
+# add by Dd, this is the docker-visor shared memory device
+obj-$(CONFIG_DOCKERVISOR) += dvisor-smem.o
+obj-$(CONFIG_DOCKERVISOR) += dvisor-smem2.o
+
 # PCI network cards
 common-obj-$(CONFIG_NE2000_PCI) += ne2000.o
 common-obj-$(CONFIG_EEPRO100_PCI) += eepro100.o

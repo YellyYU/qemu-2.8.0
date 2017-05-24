@@ -206,6 +206,7 @@ curses=""
 docs=""
 fdt=""
 netmap="no"
+dockervisor="yes"
 pixman=""
 sdl=""
 sdlabi=""
@@ -897,6 +898,10 @@ for opt do
   ;;
   --enable-netmap) netmap="yes"
   ;;
+  --disable-dockervisor) dockervisor="no"
+  ;;
+  --enable-dockervisor) dockervisor="yes"
+  ;;
   --disable-xen) xen="no"
   ;;
   --enable-xen) xen="yes"
@@ -1377,6 +1382,7 @@ disabled with --disable-FEATURE, default is enabled if available:
   rdma            RDMA-based migration support
   vde             support for vde network
   netmap          support for netmap network
+  dockervisor     support for dockervisor
   linux-aio       Linux AIO support
   cap-ng          libcap-ng support
   attr            attr and xattr support
@@ -5046,6 +5052,7 @@ echo "Documentation     $docs"
 echo "PIE               $pie"
 echo "vde support       $vde"
 echo "netmap support    $netmap"
+echo "dockervisor support    $dockervisor"
 echo "Linux AIO support $linux_aio"
 echo "ATTR/XATTR support $attr"
 echo "Install blobs     $blobs"
@@ -5213,6 +5220,10 @@ if test "$vde" = "yes" ; then
 fi
 if test "$netmap" = "yes" ; then
   echo "CONFIG_NETMAP=y" >> $config_host_mak
+fi
+# add by Dd, to support docker visor extensions
+if test "$dockervisor" = "yes" ; then
+  echo "CONFIG_DOCKERVISOR=y" >> $config_host_mak
 fi
 if test "$l2tpv3" = "yes" ; then
   echo "CONFIG_L2TPV3=y" >> $config_host_mak
